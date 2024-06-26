@@ -1,8 +1,11 @@
+import { Button } from 'flowbite-react'
 import React from 'react'
 
 const home = () => {
     return (
-        <div>home</div>
+        <div>
+            <h1></h1>
+        </div>
     )
 }
 
