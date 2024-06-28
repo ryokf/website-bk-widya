@@ -14,7 +14,7 @@ const Create = ({ data }) => {
 
     function handleSubmit(e) {
         e.preventDefault()
-        router.post('/counseling/create', answers)
+        router.post('/counseling/create', { answers: answers })
     }
 
     return (

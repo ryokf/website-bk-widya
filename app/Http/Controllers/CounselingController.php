@@ -7,6 +7,8 @@ use App\Models\CounselingDetail;
 use App\Models\Question;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 
 class CounselingController extends Controller
@@ -28,7 +30,8 @@ class CounselingController extends Controller
         return Inertia::render('counseling/counseling_user', compact('data'));
     }
 
-    public function detail($id, $id_user , CounselingDetail $counselingDetail, Counseling $counseling){
+    public function detail($id, $id_user, CounselingDetail $counselingDetail, Counseling $counseling)
+    {
 
         $data = [
             'user' => User::find($id_user),
@@ -48,9 +51,24 @@ class CounselingController extends Controller
         return Inertia::render('counseling/create', compact('data'));
     }
 
-    public function create(Request $request)
+    public function create(Request $request, Counseling $counseling)
     {
+        DB::transaction(function () use ($request, $counseling) {
+            $counseling = $counseling->create([
+                'user_id' => Auth::user()->id,
+            ]); // create new counseling
+
+            $counseling_id = $counseling->id; // get created id
+
+            foreach ($request->answers as $key => $value) {
+                CounselingDetail::create([
+                    'counseling_id' => $counseling_id,
+                    'question_id' => ++$key,
+                    'answer' => $value
+                ]);
+            }
+        });
+
         return Inertia::render('counseling/result');
     }
-
 }
