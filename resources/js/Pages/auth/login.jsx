@@ -31,6 +31,7 @@ export default function Login() {
                     <TextInput value={password} onChange={(e) => setPassword(e.target.value)} id="password1" type="password" required />
                 </div>
                 <Button onClick={handleSubmit}>Login</Button>
+                <p>Belum punya akun? <a href="/register">Register</a></p>
             </form>
         </div>
     );
