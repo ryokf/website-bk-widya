@@ -35,7 +35,8 @@ Route::controller(CounselingController::class)->group(function () {
 
 Route::controller(UserController::class)->group(function () {
     Route::get('/user', 'index')->name('user.index');
-    Route::get('/register', 'register');
+    Route::get('/register', 'registerPage');
+    Route::post('/register', 'register');
     Route::get('/login', 'loginPage');
     Route::post('/login', 'login');
     Route::get('/logout', 'logout');

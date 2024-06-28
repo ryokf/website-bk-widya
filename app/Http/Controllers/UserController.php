@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
 
 class UserController extends Controller
@@ -46,8 +48,27 @@ class UserController extends Controller
         return redirect('/');
     }
 
-    public function register(Request $request)
+    public function registerPage(Request $request)
     {
         return Inertia::render('auth/register');
+    }
+
+    public function register(Request $request)
+    {
+        $request->validate([
+            'name' => [''],
+            'email' => [''],
+            'is_male' => [''],
+            'password' => [''],
+        ]);
+
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'is_male' => $request->isMale,
+            'password' => Hash::make($request->password),
+        ]);
+
+        return redirect()->route('home');
     }
 }
