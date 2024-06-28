@@ -13,9 +13,12 @@ const Home = ({user}) => {
 
     return (
         <div className='flex flex-col justify-center items-center w-full h-screen'>
-            <Button>
+            <h1 className="text-5xl mb-4 font-medium">Becare</h1>
+            <p className='italic text-xl'>care about your mental health cause your happiness matters</p>
+            <p className='italic text-xl mb-4'> pedulilah terhadap kesehatan mentalmu,karena kebahagiaanmu berharga</p>
+            <Button className='my-2'>
                 <a href="counseling/create">
-                    Mulai konseling
+                    cerita yuk
                 </a>
             </Button>
             <Button color={'failure'} onClick={() =>localStorage.removeItem('user')}>
