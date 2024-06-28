@@ -1,10 +1,10 @@
 import { Button } from 'flowbite-react'
 import React, { useEffect } from 'react'
 
-const Home = ({user}) => {
+const Home = ({ user }) => {
 
     useEffect(() => {
-        if(user != null){
+        if (user != null) {
             localStorage.setItem('user', JSON.stringify(user))
         } else {
             window.location.href = '/login'
@@ -12,16 +12,16 @@ const Home = ({user}) => {
     }, [user])
 
     return (
-        <div className='flex flex-col justify-center items-center w-full h-screen'>
+        <div className='flex flex-col justify-center items-center m-auto h-screen w-11/12'>
             <h1 className="text-5xl mb-4 font-medium">Becare</h1>
-            <p className='italic text-xl'>care about your mental health cause your happiness matters</p>
-            <p className='italic text-xl mb-4'> pedulilah terhadap kesehatan mentalmu,karena kebahagiaanmu berharga</p>
+            <p className='italic text-xl text-center'>care about your mental health cause your happiness matters</p>
+            <p className='italic text-xl mb-4 text-center'> pedulilah terhadap kesehatan mentalmu,karena kebahagiaanmu berharga</p>
             <Button className='my-2'>
                 <a href="counseling/create">
                     cerita yuk
                 </a>
             </Button>
-            <Button color={'failure'} onClick={() =>localStorage.removeItem('user')}>
+            <Button color={'failure'} onClick={() => localStorage.removeItem('user')}>
                 <a href="/logout">
                     Logout
                 </a>
